@@ -1,0 +1,22 @@
+{
+  "name": "Tic Tac Toe Ultra Pro",
+  "short_name": "TicTacToe",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#0078ff",
+  "orientation": "portrait",
+  "description": "Play Tic Tac Toe Ultra Pro offline or online with cool features.",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
