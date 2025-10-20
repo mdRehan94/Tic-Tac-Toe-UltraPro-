@@ -4,13 +4,128 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tic Tac Toe Ultra Pro</title>
-  <link rel="stylesheet" href="style.css">
 
-  <!-- ✅ Added PWA Manifest -->
-  <link rel="manifest" href="foldername/manifest.json">
+  <style>
+    /* ====== Basic Styles ====== */
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .title {
+      font-size: 28px;
+      margin-bottom: 15px;
+      color: #00ffcc;
+    }
+
+    .profile-card {
+      background: #222;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: inline-block;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .info h2 {
+      margin: 5px 0;
+    }
+
+    .stats span {
+      display: inline-block;
+      margin: 0 8px;
+      font-weight: bold;
+    }
+
+    .edit-btn {
+      background: #00ccff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      color: #000;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .menu button {
+      display: block;
+      width: 80%;
+      margin: 8px auto;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      background: #00ffcc;
+      color: #000;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .menu button:hover {
+      background: #00cc99;
+    }
+
+    footer {
+      margin-top: 30px;
+      padding: 15px;
+      background: #111;
+      border-top: 1px solid #333;
+    }
+
+    footer p {
+      margin: 5px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    /* ====== Legal Links ====== */
+    .legal-links {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .legal-links a {
+      color: #00ccff;
+      text-decoration: none;
+      margin: 0 6px;
+    }
+
+    .legal-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* ====== Legal Page Styles ====== */
+    .page {
+      padding: 20px;
+      background: #181818;
+      border-radius: 10px;
+      margin: 20px;
+      text-align: left;
+      color: #ddd;
+    }
+
+    .page h2 {
+      color: #00ffcc;
+      text-align: center;
+    }
+  </style>
 
   <script>
-    // ====== Load Profile and Stats ======
     let coins = parseInt(localStorage.getItem("coins")) || 100;
     let xp = parseInt(localStorage.getItem("xp")) || 0;
     let name = localStorage.getItem("playerName") || "Guest Player";
@@ -26,32 +141,18 @@
     }
 
     function openPage(page) {
-      window.location.href = page;
-    }
-
-    function editProfile() {
-      let newName = prompt("Enter your name:", name);
-      let newCountry = prompt("Enter your country:", country);
-      if (newName) {
-        localStorage.setItem("playerName", newName);
-        name = newName;
-      }
-      if (newCountry) {
-        localStorage.setItem("country", newCountry);
-        country = newCountry;
-      }
-      updateStats();
+      document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+      document.getElementById(page).style.display = 'block';
+      window.scrollTo(0, 0);
     }
 
     window.onload = () => updateStats();
   </script>
 </head>
 <body>
-
   <div class="container">
     <h1 class="title">🎮 Tic Tac Toe Ultra Pro</h1>
 
-    <!-- Profile Card -->
     <div class="profile-card">
       <img id="profileImg" class="avatar" src="default-avatar.png" alt="Player">
       <div class="info">
@@ -65,37 +166,52 @@
       </div>
     </div>
 
-    <!-- Main Menu -->
     <div class="menu">
-      <button onclick="openPage('offline.html')">🎮 Play Offline</button>
-      <button onclick="openPage('online.html')">🌐 Play Online</button>
-      <button onclick="openPage('leaderboard.html')">🏆 Leaderboard</button>
-      <button onclick="openPage('shop.html')">🛒 Shop / Watch Ads</button>
-      <button onclick="openPage('costom room.html')">👤 costom room</button>
-      <button onclick="openPage('profile.html')">👤 Profile</button>
-
-      <!-- 🔮 Future Features (Expandable Slots) -->
-      <button onclick="openPage('tournament.html')">🎯 Tournament (Coming Soon)</button>
-      <button onclick="openPage('settings.html')">⚙️ Settings (Coming Soon)</button>
+      <button onclick="openPage('about')">📄 About Us</button>
+      <button onclick="openPage('contact')">📞 Contact Us</button>
+      <button onclick="openPage('privacy')">🔒 Privacy Policy</button>
+      <button onclick="openPage('terms')">📜 Terms & Conditions</button>
+      <button onclick="openPage('refund')">💵 Refund Policy</button>
     </div>
 
     <footer>
       <p>© 2025 Tic Tac Toe Ultra Pro | Created by <b>Rehan Khan</b></p>
+      <div class="legal-links">
+        <a href="#" onclick="openPage('about')">About Us</a> |
+        <a href="#" onclick="openPage('contact')">Contact Us</a> |
+        <a href="#" onclick="openPage('privacy')">Privacy Policy</a> |
+        <a href="#" onclick="openPage('terms')">Terms & Conditions</a> |
+        <a href="#" onclick="openPage('refund')">Refund Policy</a>
+      </div>
     </footer>
   </div>
 
-  <!-- ✅ Added Service Worker Registration -->
-  <script>
-    <script>
-        .then(reg => console.log('✅ Service Worker Registered:', reg.scope))
-        .catch(err => console.log('❌ Service Worker Registration Failed:', err));
-        <script>
-if('serviceWorker' in navigator){
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('service-worker.js');
-  });
-}
-</script>
+  <!-- ====== Legal Pages (Hidden by Default) ====== -->
+  <div id="about" class="page" style="display:none;">
+    <h2>About Us</h2>
+    <p>Welcome to Tic Tac Toe Ultra Pro! This game was created by Rehan Khan to offer fun, competition, and rewards. We aim to make your experience enjoyable and secure.</p>
+  </div>
 
+  <div id="contact" class="page" style="display:none;">
+    <h2>Contact Us</h2>
+    <p>If you have any questions, reach us at:</p>
+    <p>📧 Email: rk9092838@gmail.com</p>
+    <p>📍 Address: Patna, Bihar, India</p>
+  </div>
+
+  <div id="privacy" class="page" style="display:none;">
+    <h2>Privacy Policy</h2>
+    <p>We value your privacy. Your personal data such as name, coins, and XP are stored locally and never shared with third parties. We follow strict data safety guidelines.</p>
+  </div>
+
+  <div id="terms" class="page" style="display:none;">
+    <h2>Terms & Conditions</h2>
+    <p>By using this website/app, you agree to play fairly and respect others. Misuse, cheating, or exploiting bugs may result in account suspension.</p>
+  </div>
+
+  <div id="refund" class="page" style="display:none;">
+    <h2>Refund Policy</h2>
+    <p>All virtual purchases in Tic Tac Toe Ultra Pro are final. In case of technical errors, users can contact support within 7 days for review.</p>
+  </div>
 </body>
 </html>
